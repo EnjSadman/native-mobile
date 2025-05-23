@@ -30,7 +30,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-sqlite"
+      [
+        "expo-sqlite",
+        {
+          "enableFTS": true,
+          "useSqlCipher": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

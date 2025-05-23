@@ -1,21 +1,27 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import {
+  DarkTheme,
+  DefaultTheme,
+  // NavigationContainer, // Not typically used directly with expo-router
+  ThemeProvider,
+} from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { Stack } from "expo-router"; // This Stack is from expo-router
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
+import "react-native-reanimated";
 
-import { useColorScheme } from '@/components/useColorScheme';
+import { useColorScheme } from "@/components/useColorScheme";
+// import DayScreen from "./screens/DayScreen"; // Not imported this way with expo-router
 
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
-} from 'expo-router';
+} from "expo-router";
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
+  initialRouteName: "(tabs)",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -23,7 +29,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
     ...FontAwesome.font,
   });
 
@@ -49,10 +55,25 @@ function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      {/* With expo-router, NavigationContainer is handled internally by the Stack */}
+      <Stack initialRouteName="MonthScreen">
+        {/*
+          In expo-router, you don't define screens using 'component'.
+          Instead, you create files in your 'app' directory, and expo-router
+          automatically creates routes for them.
+
+          For example, if you want a "day screen", you would create a file
+          like 'app/day.tsx' or 'app/screens/day.tsx' (if you map your
+          screens directory in metro.config.js for expo-router).
+
+          If 'DayScreen' is indeed meant to be a standalone screen, ensure
+          it resides in your `app` directory (e.g., `app/day.tsx` or `app/screens/day.tsx`).
+          The name prop here should then match the file name (without extension).
+        */}
+        <Stack.Screen name="MonthScreen" options={{ headerShown: false }} />
+        {/* Assuming you have a file like `app/day.tsx` or `app/screens/day.tsx` */}
+        <Stack.Screen name="DayScreen" />
       </Stack>
     </ThemeProvider>
   );
