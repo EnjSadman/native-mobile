@@ -57,7 +57,7 @@ function RootLayoutNav() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       {/* With expo-router, NavigationContainer is handled internally by the Stack */}
-      <Stack initialRouteName="MonthScreen">
+      <Stack initialRouteName="SettingsScreen">
         {/*
           In expo-router, you don't define screens using 'component'.
           Instead, you create files in your 'app' directory, and expo-router
@@ -71,9 +71,7 @@ function RootLayoutNav() {
           it resides in your `app` directory (e.g., `app/day.tsx` or `app/screens/day.tsx`).
           The name prop here should then match the file name (without extension).
         */}
-        <Stack.Screen name="MonthScreen" options={{ headerShown: false }} />
         {/* Assuming you have a file like `app/day.tsx` or `app/screens/day.tsx` */}
-        <Stack.Screen name="DayScreen" />
       </Stack>
     </ThemeProvider>
   );

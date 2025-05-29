@@ -1,15 +1,12 @@
+import { MainNav } from "@/components/Navigation/MainNav";
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-const DayScreen = ({ navigation }) => {
+const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Day View</Text>
-      <Text>Day Screen</Text>
-      <Button
-        title="Go to Week View"
-        onPress={() => navigation.navigate("Week")}
-      />
+      <Text style={styles.title}>Calendar View</Text>
+      <MainNav />
     </View>
   );
 };
@@ -19,4 +16,4 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, marginBottom: 20 },
 });
 
-export default DayScreen;
+export default SettingsScreen;

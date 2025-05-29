@@ -1,14 +1,12 @@
+import { MainNav } from "@/components/Navigation/MainNav";
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-const WeekScreen = ({ navigation }) => {
+const SettingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Day View</Text>
-      <Button
-        title="Go to Month View"
-        onPress={() => navigation.navigate("Month")}
-      />
+      <Text style={styles.title}>Kanban View</Text>
+      <MainNav />
     </View>
   );
 };
@@ -18,4 +16,4 @@ const styles = StyleSheet.create({
   title: { fontSize: 24, marginBottom: 20 },
 });
 
-export default WeekScreen;
+export default SettingsScreen;
